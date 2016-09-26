@@ -9,6 +9,7 @@ namespace OP_LetterLabyrinth
         private readonly Language _language;
         private readonly string[] _words;
         private List<Letter> _letters = new List<Letter>();
+        private Random random = new Random();
 
         public Dictionary(Language language)
         {
@@ -33,7 +34,7 @@ namespace OP_LetterLabyrinth
         public string GetAnyWordOfLength(int length)
         {
             var possibleWords = _words.Where(w => w.Length == length);
-            var random = new Random();
+          
             var enumerable = possibleWords as string[] ?? possibleWords.ToArray();
             var word = enumerable.ElementAt(random.Next(enumerable.Length)).ToUpper();
             Logger.GetInstance().Log("INFO", $"Getting word of {length} length: {word}");

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace OP_LetterLabyrinth
 {
@@ -15,7 +16,7 @@ namespace OP_LetterLabyrinth
             Logger.GetInstance().Log("INFO", $"Reading dictionary in {languageFilePath}");
             try
             {
-                var lines = File.ReadAllLines(languageFilePath);
+                var lines = File.ReadAllLines(languageFilePath, Encoding.UTF8);
                 var wordCount = int.Parse(lines.First());
                 ReadWords(lines.Skip(1).Take(wordCount).ToArray());
                 ReadLetters(lines.Skip(wordCount + 1).ToArray());

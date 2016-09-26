@@ -37,7 +37,12 @@ namespace OP_LetterLabyrinth
             return new Letter("*", 0, 0);
         }
 
-	
+        public static Letter Path()
+        {
+            return new Letter("X", 0, 0);
+        }
+
+
     }
 }
 

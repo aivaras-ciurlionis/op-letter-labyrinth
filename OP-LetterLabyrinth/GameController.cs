@@ -22,8 +22,8 @@ namespace OP_LetterLabyrinth
             var lang = new Language(language, language + "_dictionary.txt");
             ResetGameStatus(lang);
             _currentDictionary = new Dictionary(lang);
-            _currentPlayer = new Player(new Point { X = 0, Y = 0 });
-            _currentGrid = new LetterGrid(sizeX, sizeY, new RandomGridFiller(_currentDictionary));
+            _currentPlayer = new Player(new Point { X = -1, Y = 0 });
+            _currentGrid = new LetterGrid(sizeX, sizeY, new SmartGridFiller(_currentDictionary));
             _input = input;
             _graphics = graphics;
             _graphics.DrawTurn(_currentPlayer, _currentGrid);

@@ -6,11 +6,11 @@ namespace OP_LetterLabyrinth
 {
     public class RandomGridFiller : IGridFiller
     {
-        private Dictionary _dictionary;
+        protected Dictionary Dictionary;
 
         public RandomGridFiller(Dictionary dictionary)
         {
-            _dictionary = dictionary;
+            Dictionary = dictionary;
         }
 
         private Letter GetLetterInFrequencyIndex(IEnumerable<Letter> letters, int index)
@@ -27,9 +27,9 @@ namespace OP_LetterLabyrinth
             return letters.First();
         }
 
-        public List<List<Letter>> GetLetters(int sizeX, int sizeY)
+        protected List<List<Letter>> FillRandomLetters(int sizeX, int sizeY)
         {
-            var letters = _dictionary.GetLetters();
+            var letters = Dictionary.GetLetters();
             var orderedLetters = letters.OrderBy(l => l.GetFrequency());
             var totalFrequency = letters.Sum(l => l.GetFrequency());
             var random = new Random();
@@ -44,6 +44,11 @@ namespace OP_LetterLabyrinth
                 list.Add(rowList);
             }
             return list;
+        }
+
+        public virtual List<List<Letter>> GetLetters(int sizeX, int sizeY)
+        {
+            return FillRandomLetters(sizeX, sizeY);
         }
     }
 }

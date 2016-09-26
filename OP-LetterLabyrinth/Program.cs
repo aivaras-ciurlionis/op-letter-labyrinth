@@ -12,7 +12,7 @@ namespace OP_LetterLabyrinth
         {
             Logger.GetInstance().Log("INFO", "Program is starting");
             var game = new GameController();
-            game.InstanciateGame(LanguageName.En, new SimpleInput(), new ConsoleGraphics(), 10, 10);
+            game.InstanciateGame(LanguageName.Lt, new SimpleInput(), new ConsoleGraphics(), 10, 10);
             var turn = 0;
             while (true)
             {
