@@ -6,7 +6,7 @@ namespace OP_LetterLabyrinth
 {
     public interface IGraphics
     {
-        void DrawTurn(Player player, LetterGrid grid );
+        void DrawTurn(Player player, LetterGrid grid, Dictionary dictionary);
     }
 }
 

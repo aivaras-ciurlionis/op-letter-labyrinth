@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace OP_LetterLabyrinth
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Logger.GetInstance().Log("INFO", "Program is starting");
             var game = new GameController();
-            game.InstanciateGame(LanguageName.Lt, new SimpleInput(), new ConsoleGraphics(), 10, 10);
+            game.InstanciateGame(LanguageName.En, new SimpleInput(), new ConsoleGraphics(), 15, 15);
             var turn = 0;
             while (true)
             {

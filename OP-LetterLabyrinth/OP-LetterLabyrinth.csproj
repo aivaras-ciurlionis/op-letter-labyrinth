@@ -46,6 +46,7 @@
     <Compile Include="ConsoleGraphics.cs" />
     <Compile Include="Dictionary.cs" />
     <Compile Include="DictionaryReader.cs" />
+    <Compile Include="FindableWord.cs" />
     <Compile Include="Move.cs" />
     <Compile Include="GameController.cs" />
     <Compile Include="GameStatus.cs" />

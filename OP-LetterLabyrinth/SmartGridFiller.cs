@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace OP_LetterLabyrinth
 {
@@ -76,21 +77,26 @@ namespace OP_LetterLabyrinth
             _sizeY = sizeY;
             var path = new List<Point>();
             GetPath(ref path, new Point { X = 0, Y = 0 });
-            var sizes = SplitIntoRandomSizes(path.Count, 3, 5);
+            var sizes = SplitIntoRandomSizes(path.Count, 4, 8);
             var letters = FillRandomLetters(sizeX, sizeY);
             var pointNumber = 0;
+            var words = new List<Letter[]>();
             foreach (var size in sizes)
-            {
+            {              
                 var word = Dictionary.GetLettersOfWord(Dictionary.GetAnyWordOfLength(size));
+                words.Add(word);
                 foreach (var letter in word)
                 {
                     var point = path[pointNumber];
                     letters[point.X][point.Y] = letter;
                     pointNumber++;
                 }
-
             }
-
+            var shuffled = words.OrderBy(w => random.Next());
+            foreach (var word in shuffled)
+            {
+                Dictionary.AddPathWord(word);
+            }
             return letters;
         }
     }

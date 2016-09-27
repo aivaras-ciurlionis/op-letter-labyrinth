@@ -26,7 +26,7 @@ namespace OP_LetterLabyrinth
             _currentGrid = new LetterGrid(sizeX, sizeY, new SmartGridFiller(_currentDictionary));
             _input = input;
             _graphics = graphics;
-            _graphics.DrawTurn(_currentPlayer, _currentGrid);
+            _graphics.DrawTurn(_currentPlayer, _currentGrid, _currentDictionary);
         }
 
         private static void ResetGameStatus(Language language)
@@ -48,9 +48,19 @@ namespace OP_LetterLabyrinth
                 var currentWord = GameStatus.GetInstance().AddLetter(letter);
                 if (_currentDictionary.AnyWordBeginsWith(currentWord))
                 {
-                    if (currentWord.Length > 2 && _currentDictionary.WordExists(currentWord))
+                    if (_currentDictionary.WordFragmentExistsInPath(currentWord))
                     {
-                        GameStatus.GetInstance().ConsumeCurrentWord(true);
+                        if (_currentDictionary.WordExistsInPath(currentWord))
+                        {
+                            GameStatus.GetInstance().ConsumeCurrentWord(true);
+                        }
+                    }
+                    else
+                    {
+                        if (currentWord.Length > 2 && _currentDictionary.WordExists(currentWord))
+                        {
+                            GameStatus.GetInstance().ConsumeCurrentWord(true);
+                        }
                     }
                 }
                 else
@@ -62,7 +72,7 @@ namespace OP_LetterLabyrinth
             {
                 GameStatus.GetInstance().ConsumeCurrentWord(false);
             }
-            _graphics.DrawTurn(_currentPlayer, _currentGrid);
+            _graphics.DrawTurn(_currentPlayer, _currentGrid, _currentDictionary);
         }
 
         public void FinishGame()

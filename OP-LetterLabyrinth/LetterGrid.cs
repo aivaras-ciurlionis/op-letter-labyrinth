@@ -18,7 +18,6 @@ namespace OP_LetterLabyrinth
 
         public LetterGrid(int sizeX, int sizeY, IGridFiller filler)
         {
-
             Logger.GetInstance().Log("INFO", "Filling grid");
             var letters = filler.GetLetters(sizeX, sizeY);
             _letters.AddRange(letters.Select(l => l.ToList()));
